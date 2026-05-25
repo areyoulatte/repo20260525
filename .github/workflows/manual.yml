@@ -48,6 +48,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
+    
     - name: passo1
       run: echo "Hello ${{ inputs.servidor }}"
     - name: passo2
@@ -55,4 +56,6 @@ jobs:
         echo  ${{ secrets.certificado }} > fich.cer
         chmod 600 fich.cer
         ssh root@${{ inputs.servidor }} -i fich.cer -c "mkdir ${{ inputs.pasta }}"
+        python ex01.py
+        # ./script.sh 
       
