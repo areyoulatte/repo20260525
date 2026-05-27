@@ -3,6 +3,20 @@
 # Nome do ficheiro YAML por defeito
 YAML_FILE="hosts.yml"
 
+# ==========================================
+# FUNÇÃO DE TRAP e GESTÃO DE SINAIS
+# ==========================================
+capturar_sinais() {
+    echo -e "\n\n[AVISO] Operação cancelada pelo utilizador ou interrompida pelo sistema."
+    echo "A fechar o script de forma segura..."
+    # Se fossem usados ficheiros temporários, seriam removidos aqui:
+    # rm -f /tmp/dados_temporarios.$$
+    exit 1
+}
+# Ativar o trap para capturar:
+# SIGINT (Ctrl+C), SIGTERM (Sinal de terminação), SIGTSTP (Ctrl+Z)
+trap capturar_sinais SIGINT SIGTERM SIGTSTP
+
 # Função para exibir a ajuda/utilização do script
 exibir_ajuda() {
     echo "Uso: $0 [opção] [parâmetros]"
